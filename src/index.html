@@ -80,6 +80,23 @@
   </ul>
   <p class="share-status" id="share-status" role="status"></p>
 
+  <section class="works" id="works" aria-labelledby="works-h">
+    <h2 id="works-h">Работы: до и после</h2>
+    <p class="works-note">Потяните шторку, чтобы сравнить. Сейчас здесь рисунки-примеры: их заменят фото пациентов, давших согласие.</p>
+    <div class="cases" role="tablist" aria-label="Случаи" id="case-tabs"></div>
+    <figure class="ba" id="ba">
+      <div class="ba-frame">
+        <img class="ba-img" id="ba-after" src="works/example-1-after.svg" alt="После лечения" width="640" height="420">
+        <img class="ba-img ba-before" id="ba-before" src="works/example-1-before.svg" alt="До лечения" width="640" height="420">
+        <span class="ba-tag ba-tag-before" aria-hidden="true">До</span>
+        <span class="ba-tag ba-tag-after" aria-hidden="true">После</span>
+        <span class="ba-line" aria-hidden="true"></span>
+        <input class="ba-range" id="ba-range" type="range" min="0" max="100" value="50" aria-label="Шторка: слева до лечения, справа после">
+      </div>
+      <figcaption class="ba-cap"><strong id="ba-title"></strong><span id="ba-method"></span></figcaption>
+    </figure>
+  </section>
+
   <section class="about-doc" aria-labelledby="doc-h">
     <h2 id="doc-h">О враче</h2>
     <ul class="facts" id="facts"></ul>
