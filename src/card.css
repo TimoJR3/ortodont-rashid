@@ -1,0 +1,121 @@
+/* Визитка Ortodont Rashid. Цвета — из логотипа: синий круг, серо-голубое кольцо, белый зуб, почти чёрный фон.
+   Страница рассчитана на телефон: на неё попадают по QR-коду или NFC-метке. */
+:root {
+  --bg: #080c15;
+  --bg-2: #0f1626;
+  --navy: #1f3a6b;
+  --navy-deep: #142849;
+  --ring: #8b9bb2;
+  --mist: #b9c5d5;
+  --enamel: #f3f5f8;
+  --line: rgba(139, 155, 178, 0.18);
+  --serif: "Forum", "Times New Roman", serif;
+  --sans: "Golos Text", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --logo: min(272px, 68vw);
+  color-scheme: dark;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0; min-height: 100vh;
+  background: radial-gradient(120% 60% at 50% 0%, #0f1a30 0%, var(--bg) 60%) no-repeat, var(--bg);
+  color: var(--enamel); font: 400 16px/1.55 var(--sans);
+}
+h1, h2 { font-family: var(--serif); font-weight: 400; margin: 0; line-height: 1.05; }
+a { color: inherit; }
+:focus-visible { outline: 2px solid var(--mist); outline-offset: 3px; border-radius: 6px; }
+
+.skip { position: absolute; left: 12px; top: -60px; padding: 10px 14px; background: var(--enamel); color: var(--bg); z-index: 30; }
+.skip:focus { top: 12px; }
+.sprite { position: absolute; width: 0; height: 0; overflow: hidden; }
+
+#tooth-canvas { position: fixed; inset: 0; width: 100%; height: 100%; z-index: 5; pointer-events: none; }
+.no-3d #tooth-canvas { display: none; }
+
+.card { position: relative; z-index: 1; max-width: 480px; margin: 0 auto; padding: 0 16px calc(32px + env(safe-area-inset-bottom)); }
+
+.demo-note { margin: 0 -16px 28px; padding: 9px 16px; background: rgba(31, 58, 107, 0.45); color: var(--mist); font-size: 13px; text-align: center; }
+
+/* ---------- логотип: кольцо, синий круг, живой зуб и надпись ---------- */
+.hero { text-align: center; }
+.logo {
+  position: relative; width: var(--logo); aspect-ratio: 1; margin: 0 auto;
+  border-radius: 50%;
+  border: calc(var(--logo) * 0.05) solid rgba(139, 155, 178, 0.62);
+  background: radial-gradient(circle at 50% 36%, #2a4a84 0%, var(--navy) 48%, var(--navy-deep) 100%);
+  box-shadow: 0 0 0 1px rgba(139, 155, 178, 0.25), 0 30px 80px -30px rgba(31, 58, 107, 0.9);
+}
+.spot { position: absolute; left: 21%; top: 3%; width: 58%; aspect-ratio: 1; }
+.spot-fallback { position: absolute; inset: 10%; width: 80%; height: 80%; transition: opacity .4s; }
+.has-3d .spot-fallback { opacity: 0; }
+.logo-word {
+  position: absolute; left: 0; right: 0; top: 60%; margin: 0;
+  display: grid; justify-items: center; gap: calc(var(--logo) * 0.01);
+  font: 400 calc(var(--logo) * 0.092)/1 var(--serif);
+  letter-spacing: 0.08em; text-transform: uppercase; color: var(--enamel);
+}
+
+.name { margin-top: 26px; font-size: clamp(2.3rem, 10vw, 2.9rem); }
+.role { margin: 8px 0 0; color: var(--ring); font-size: 15px; }
+.about { margin: 16px auto 0; max-width: 34ch; color: var(--mist); }
+
+.main-acts { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 24px; }
+.btn {
+  display: grid; place-items: center; min-height: 52px; padding: 0 12px;
+  border-radius: 26px; border: 1px solid var(--ring); background: transparent;
+  color: var(--enamel); font: 500 15px/1.2 var(--sans); text-decoration: none; text-align: center; cursor: pointer;
+}
+.btn:hover { background: rgba(139, 155, 178, 0.12); }
+.btn-main { background: var(--enamel); border-color: var(--enamel); color: var(--bg); }
+.btn-main:hover { background: #fff; }
+
+/* ---------- список контактов ---------- */
+.links { list-style: none; margin: 32px 0 0; padding: 0; border-top: 1px solid var(--line); }
+.links li { border-bottom: 1px solid var(--line); }
+.links a, .links button {
+  display: grid; grid-template-columns: 44px minmax(0, 1fr); grid-template-rows: auto auto; column-gap: 14px; align-items: center;
+  width: 100%; padding: 14px 4px; min-height: 68px;
+  background: none; border: 0; color: var(--enamel); font: inherit; text-align: left; text-decoration: none; cursor: pointer;
+}
+.links a:hover, .links button:hover { background: rgba(139, 155, 178, 0.06); }
+.ico {
+  grid-row: 1 / 3; width: 44px; height: 44px; padding: 11px; border-radius: 50%;
+  background: var(--navy); color: var(--enamel);
+}
+.l-title { font-weight: 500; line-height: 1.25; }
+.l-sub { color: var(--ring); font-size: 14px; line-height: 1.35; overflow-wrap: anywhere; }
+.share-status { min-height: 1.2em; margin: 10px 0 0; text-align: center; font-size: 14px; color: var(--mist); }
+
+/* ---------- о враче ---------- */
+.about-doc { margin-top: 28px; }
+.about-doc h2 { font-size: 1.9rem; }
+.facts { margin: 10px 0 0; padding: 0 0 0 18px; color: var(--mist); }
+.facts li + li { margin-top: 4px; }
+
+/* ---------- клиника ---------- */
+.clinic {
+  display: grid; gap: 2px; margin-top: 32px; padding: 18px 20px;
+  border-radius: 20px; border: 1px solid var(--line); background: var(--bg-2); text-decoration: none;
+}
+.clinic:hover { border-color: var(--ring); }
+.clinic-sub { color: var(--ring); font-size: 14px; }
+.clinic-name { font: 400 1.6rem/1.1 var(--serif); }
+
+.foot { margin-top: 36px; text-align: center; font-size: 12.5px; color: var(--ring); }
+.foot p { margin: 0 0 4px; }
+
+/* ---------- QR на экране ---------- */
+.qr-dialog {
+  width: min(340px, calc(100vw - 32px)); padding: 24px; border: 0; border-radius: 24px;
+  background: var(--bg-2); color: var(--enamel); text-align: center;
+}
+.qr-dialog::backdrop { background: rgba(5, 8, 14, 0.82); }
+.qr-dialog h2 { font-size: 1.7rem; margin-bottom: 14px; }
+.qr-dialog img { display: block; width: 100%; height: auto; border-radius: 14px; background: #fff; }
+.qr-dialog p { margin: 12px 0 16px; color: var(--mist); font-size: 15px; }
+.qr-dialog .btn { width: 100%; }
+
+@media (prefers-reduced-motion: reduce) {
+  .spot-fallback { transition: none; }
+}

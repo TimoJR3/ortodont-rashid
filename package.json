@@ -1,0 +1,21 @@
+{
+  "name": "ortodont-rashid-card",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Персональная визитка врача-ортодонта Ortodont Rashid (демо)",
+  "site": {
+    "slug": "ortodont-rashid-card",
+    "title": "Ortodont Rashid — визитка",
+    "url": "https://ortodont-rashid.netlify.app"
+  },
+  "scripts": {
+    "start": "node tools/serve.js src",
+    "build": "node tools/build.js",
+    "build:zip": "node tools/build.js --zip",
+    "assets": "node tools/assets.js",
+    "test": "node --test tests/static.test.js"
+  },
+  "devDependencies": {
+    "qrcode": "1.5.4"
+  }
+}
