@@ -3,88 +3,74 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Ortodont Rashid — визитка врача-ортодонта</title>
-<meta name="description" content="Врач-ортодонт Рашид, Дербент: позвонить, написать в WhatsApp, Instagram, адрес приёма.">
+<title>Гасанов Рашид — врач-ортодонт, Дербент</title>
+<meta name="description" content="Врач-ортодонт Рашид Гасанов, Дербент: брекеты, элайнеры, исправление прикуса у детей и взрослых. Запись, работы, отзывы, адрес клиники.">
 <meta name="theme-color" content="#080c15">
-<!-- ДЕМО: визитка скрыта от поисковиков. Убрать эту строку (и X-Robots-Tag в _headers) при запуске. -->
+<!-- ДЕМО: визитка скрыта от поисковиков. Убрать эту строку при запуске. -->
 <meta name="robots" content="noindex, nofollow">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
-<link rel="preload" href="fonts/forum-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/forum-cyrillic.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="fonts/golos-cyrillic.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="fonts/fonts.css">
 <link rel="stylesheet" href="card.css">
 </head>
 <body>
 
-<a class="skip" href="#links">Перейти к контактам</a>
+<a class="skip" href="#contacts">Перейти к контактам</a>
 
-<!-- 3D-зуб (js/tooth.js) рисуется поверх страницы в точке .spot внутри логотипа -->
+<!-- 3D-зуб (js/tooth.js) рисуется поверх страницы в точке .spot — внутри круглого знака у фото -->
 <canvas id="tooth-canvas" aria-hidden="true"></canvas>
 
 <main class="card">
-  <header class="hero">
-    <p class="demo-note">Демо-визитка. Данные в квадратных скобках будут заменены реальными.</p>
+  <p class="demo-note">Демо-визитка. Данные в квадратных скобках будут заменены реальными.</p>
 
-    <!-- логотип: серо-голубое кольцо, синий круг, зуб с брекетом и надпись -->
-    <div class="logo" role="img" aria-label="Логотип Ortodont Rashid">
-      <div class="spot" data-spot data-spot-m data-ry="-0.4" data-rx="0.06">
-        <svg class="spot-fallback" viewBox="0 0 100 100" aria-hidden="true"><use href="#tooth"/></svg>
+  <!-- 1. Знакомство: фамилия и имя, должность, фото, главные действия -->
+  <header class="hero">
+    <div class="hero-photo">
+      <img id="photo" src="photos/rashid.webp" alt="Врач-ортодонт Рашид Гасанов" width="760" height="931" fetchpriority="high" decoding="async">
+      <div class="badge" role="img" aria-label="Знак Ortodont Rashid">
+        <div class="spot" data-spot data-spot-m data-ry="-0.4" data-rx="0.06">
+          <svg class="spot-fallback" viewBox="0 0 100 100" aria-hidden="true"><use href="#tooth"/></svg>
+        </div>
+        <p class="badge-word" aria-hidden="true">Ortodont Rashid</p>
       </div>
-      <p class="logo-word" aria-hidden="true"><span>Ortodont</span><span>Rashid</span></p>
     </div>
 
-    <h1 class="name" data-cfg="name">Рашид [Фамилия]</h1>
+    <h1 class="name" data-cfg="heading">Гасанов Рашид</h1>
     <p class="role"><span data-cfg="role">Врач-ортодонт</span>, <span data-cfg="city">Дербент</span></p>
-    <p class="about" data-cfg="about">Исправляю прикус у детей и взрослых.</p>
 
-    <div class="main-acts">
-      <a class="btn btn-main" data-href="tel" href="#">Позвонить</a>
-      <a class="btn" data-href="whatsapp" href="#" target="_blank" rel="noopener">WhatsApp</a>
+    <div class="hero-acts">
+      <a class="btn btn-main btn-wide" data-href="tel" href="#">Записаться на консультацию</a>
+      <a class="act" data-href="whatsapp" href="#" target="_blank" rel="noopener">
+        <svg class="act-ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-chat"/></svg><span>WhatsApp</span>
+      </a>
+      <a class="act" href="#works">
+        <svg class="act-ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-works"/></svg><span>Работы</span>
+      </a>
+      <a class="act" data-href="map" href="#" target="_blank" rel="noopener">
+        <svg class="act-ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-pin"/></svg><span>Адрес клиники</span>
+      </a>
     </div>
     <p class="payment" data-need="payment" data-cfg="payment">Возможна рассрочка на лечение</p>
   </header>
 
-  <!-- контакты списком: значок, что это, и подробность -->
-  <ul class="links" id="links">
-    <li><a data-href="tel" href="#">
-      <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-phone"/></svg>
-      <span class="l-title">Телефон</span><span class="l-sub" data-cfg="phoneDisplay">+7 (000) 000-00-00</span>
-    </a></li>
-    <li><a data-href="whatsapp" href="#" target="_blank" rel="noopener">
-      <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-chat"/></svg>
-      <span class="l-title">WhatsApp</span><span class="l-sub">Записаться или задать вопрос</span>
-    </a></li>
-    <li data-need="telegram"><a data-href="telegram" href="#" target="_blank" rel="noopener">
-      <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-send"/></svg>
-      <span class="l-title">Telegram</span><span class="l-sub" data-cfg="telegramAt">@username</span>
-    </a></li>
-    <li data-need="instagram"><a data-href="instagram" href="#" target="_blank" rel="noopener">
-      <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-insta"/></svg>
-      <span class="l-title">Instagram</span><span class="l-sub" data-cfg="instagramAt">Работы и отзывы пациентов</span>
-    </a></li>
-    <li><a data-href="map" href="#" target="_blank" rel="noopener">
-      <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-pin"/></svg>
-      <span class="l-title">Адрес приёма</span><span class="l-sub" data-cfg="address">[Адрес]</span>
-    </a></li>
-    <li><a href="contact.vcf" download>
-      <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-user"/></svg>
-      <span class="l-title">Сохранить контакт</span><span class="l-sub">Добавить в телефонную книгу</span>
-    </a></li>
-    <li><button type="button" id="share">
-      <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-share"/></svg>
-      <span class="l-title">Поделиться визиткой</span><span class="l-sub">Отправить ссылку знакомым</span>
-    </button></li>
-    <li><button type="button" id="qr-open">
-      <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-qr"/></svg>
-      <span class="l-title">Показать QR-код</span><span class="l-sub">Чтобы отсканировали с вашего экрана</span>
-    </button></li>
-  </ul>
-  <p class="share-status" id="share-status" role="status"></p>
+  <!-- 2. О враче: чем занимается, диагностика и лечение, подход -->
+  <section class="sec" id="about" aria-labelledby="about-h">
+    <h2 id="about-h">О враче</h2>
+    <p class="lead" data-cfg="about">Исправление прикуса и выравнивание зубов.</p>
+    <div class="focus" id="focus"></div>
+    <figure class="approach" data-need="approach">
+      <h3>Подход</h3>
+      <blockquote id="approach"></blockquote>
+      <figcaption>— <span data-cfg="name">Рашид Гасанов</span></figcaption>
+    </figure>
+  </section>
 
-  <section class="works" id="works" aria-labelledby="works-h">
+  <!-- 3. Работы до и после -->
+  <section class="sec works" id="works" aria-labelledby="works-h">
     <h2 id="works-h">Работы: до и после</h2>
-    <p class="works-note">Потяните шторку, чтобы сравнить. Сейчас здесь рисунки-примеры: их заменят фото пациентов, давших согласие.</p>
-    <div class="cases" role="tablist" aria-label="Случаи" id="case-tabs"></div>
+    <p class="note">Потяните шторку, чтобы сравнить. Сейчас здесь рисунки-примеры: их заменят фото пациентов, давших согласие.</p>
+    <div class="cases-tabs" role="tablist" aria-label="Случаи" id="case-tabs"></div>
     <figure class="ba" id="ba">
       <div class="ba-frame">
         <img class="ba-img" id="ba-after" src="works/example-1-after.svg" alt="После лечения" width="640" height="420">
@@ -98,33 +84,97 @@
     </figure>
   </section>
 
-  <section class="about-doc" aria-labelledby="doc-h">
-    <h2 id="doc-h">О враче</h2>
-    <figure class="portrait" data-need="photo">
-      <img id="photo" src="photos/rashid.jpg" alt="Врач-ортодонт Рашид Гасанов" width="1133" height="1388" loading="lazy" decoding="async">
-    </figure>
+  <!-- 4. Клинические случаи -->
+  <section class="sec" data-need="cases" aria-labelledby="cases-h">
+    <h2 id="cases-h">Клинические случаи</h2>
+    <ul class="case-list" id="case-list"></ul>
+  </section>
+
+  <!-- 5. Основные методы лечения -->
+  <section class="sec" data-need="methods" aria-labelledby="methods-h">
+    <h2 id="methods-h">Методы лечения</h2>
+    <ul class="methods" id="methods"></ul>
+  </section>
+
+  <!-- 6. Путь пациента — по шагам -->
+  <section class="sec" data-need="path" aria-labelledby="path-h">
+    <h2 id="path-h">Лечение по понятному плану</h2>
+    <ol class="path" id="path"></ol>
+  </section>
+
+  <!-- 7. Образование и профессиональное развитие -->
+  <section class="sec" id="education-sec" aria-labelledby="edu-h">
+    <h2 id="edu-h">Образование и развитие</h2>
     <p class="experience" data-need="experience" data-cfg="experience">Стаж</p>
     <h3 class="sub-h" data-need="education">Образование</h3>
     <ul class="facts" id="education" data-need="education"></ul>
     <h3 class="sub-h" data-need="courses">Повышение квалификации</h3>
     <ol class="courses" id="courses" data-need="courses"></ol>
+    <h3 class="sub-h" data-need="certificates">Сертификаты</h3>
+    <ul class="certs" id="certs" data-need="certificates"></ul>
   </section>
 
-  <section class="reviews" id="reviews" data-need="reviews" aria-labelledby="reviews-h">
+  <!-- 8. Адрес клиники и контакты -->
+  <section class="sec" id="contacts" aria-labelledby="contacts-h">
+    <h2 id="contacts-h">Адрес и запись</h2>
+    <ul class="links">
+      <li><a data-href="map" href="#" target="_blank" rel="noopener">
+        <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-pin"/></svg>
+        <span class="l-title" data-need="clinic" data-cfg="clinic">Клиника</span><span class="l-sub" data-cfg="address">[Адрес]</span>
+      </a></li>
+      <li><a data-href="tel" href="#">
+        <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-phone"/></svg>
+        <span class="l-title">Позвонить</span><span class="l-sub" data-cfg="phoneDisplay">+7 (000) 000-00-00</span>
+      </a></li>
+      <li><a data-href="whatsapp" href="#" target="_blank" rel="noopener">
+        <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-chat"/></svg>
+        <span class="l-title">WhatsApp</span><span class="l-sub">Записаться или задать вопрос</span>
+      </a></li>
+      <li data-need="telegram"><a data-href="telegram" href="#" target="_blank" rel="noopener">
+        <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-send"/></svg>
+        <span class="l-title">Telegram</span><span class="l-sub" data-cfg="telegramAt">@username</span>
+      </a></li>
+      <li data-need="instagram"><a data-href="instagram" href="#" target="_blank" rel="noopener">
+        <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-insta"/></svg>
+        <span class="l-title">Instagram</span><span class="l-sub" data-cfg="instagramAt">Работы и отзывы пациентов</span>
+      </a></li>
+      <li><a href="contact.vcf" download>
+        <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-user"/></svg>
+        <span class="l-title">Сохранить контакт</span><span class="l-sub">Добавить в телефонную книгу</span>
+      </a></li>
+      <li><button type="button" id="share">
+        <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-share"/></svg>
+        <span class="l-title">Поделиться визиткой</span><span class="l-sub">Отправить ссылку знакомым</span>
+      </button></li>
+      <li><button type="button" id="qr-open">
+        <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-qr"/></svg>
+        <span class="l-title">Показать QR-код</span><span class="l-sub">Чтобы отсканировали с вашего экрана</span>
+      </button></li>
+    </ul>
+    <p class="share-status" id="share-status" role="status"></p>
+    <a class="clinic" data-need="clinic" data-href="clinic" href="#">
+      <span class="clinic-sub">Визитка клиники</span>
+      <span class="clinic-name" data-cfg="clinic">Клиника</span>
+    </a>
+  </section>
+
+  <!-- 9. Отзывы -->
+  <section class="sec" id="reviews" data-need="reviews" aria-labelledby="reviews-h">
     <h2 id="reviews-h">Истории пациентов</h2>
     <ul class="review-list" id="review-list"></ul>
   </section>
-
-  <a class="clinic" data-need="clinic" data-href="clinic" href="#">
-    <span class="clinic-sub">Принимает в клинике</span>
-    <span class="clinic-name" data-cfg="clinic">Клиника</span>
-  </a>
 
   <footer class="foot">
     <p>Имеются противопоказания. Необходима консультация специалиста.</p>
     <p>Демо-визитка. Информация не является публичной офертой.</p>
   </footer>
 </main>
+
+<!-- закреплённая панель внизу: запись всегда под пальцем -->
+<nav class="bar" aria-label="Быстрые действия">
+  <a class="bar-main" data-href="tel" href="#">Позвонить</a>
+  <a data-href="whatsapp" href="#" target="_blank" rel="noopener">WhatsApp</a>
+</nav>
 
 <dialog class="qr-dialog" id="qr-dialog" aria-labelledby="qr-h">
   <h2 id="qr-h">QR-код визитки</h2>
@@ -148,6 +198,7 @@
     <symbol id="i-share" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M12 15V3.5M7.5 8L12 3.5 16.5 8M5 12.5V19a1.5 1.5 0 0 0 1.5 1.5h11A1.5 1.5 0 0 0 19 19v-6.5"/></symbol>
     <symbol id="i-user" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M11 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM3.5 20.5c.8-3.6 3.8-5.5 7.5-5.5 1.6 0 3 .3 4.2 1M19 14v6M16 17h6"/></symbol>
     <symbol id="i-qr" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" d="M4 4h6v6H4zM14 4h6v6h-6zM4 14h6v6H4z"/><path fill="currentColor" d="M14 14h3v3h-3zM17 17h3v3h-3zM14 19h2v1h-2zM19 14h1v2h-1z"/></symbol>
+    <symbol id="i-works" viewBox="0 0 24 24"><rect x="3.5" y="5" width="17" height="14" rx="3" fill="none" stroke="currentColor" stroke-width="1.8"/><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" d="M12 5v14M8.5 10.5 7 12l1.5 1.5M15.5 10.5 17 12l-1.5 1.5"/></symbol>
   </defs>
 </svg>
 

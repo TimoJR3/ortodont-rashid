@@ -1,14 +1,17 @@
-/* Визитка Ortodont Rashid: данные из card-config.js, «Поделиться», QR на экране.
-   Весь текст выводится через textContent; внешние ссылки допускаются только https://. */
+/* Визитка врача: данные из card-config.js, шторка «до/после», отзывы, «Поделиться», QR на экране.
+   Весь текст выводится через textContent; внешние ссылки допускаются только https://, картинки — только свои файлы. */
 (function () {
   const $ = (s, r = document) => r.querySelector(s);
   const $$ = (s, r = document) => [...r.querySelectorAll(s)];
   const httpsOnly = (u) => { try { const x = new URL(u); return x.protocol === "https:" ? x.href : null; } catch { return null; } };
+  const ownFile = (p, dir) => new RegExp("^" + dir + "/[\\w-]+\\.(svg|webp|jpe?g|png)$").test(p || "");
+  const add = (parent, tag, cls, txt) => { const e = document.createElement(tag); if (cls) e.className = cls; if (txt != null) e.textContent = txt; parent.append(e); return e; };
+  const list = (k) => Array.isArray(CARD[k]) && CARD[k].length > 0;
 
+  /* ---------- тексты и ссылки ---------- */
   const tg = String(CARD.telegram || "").replace(/[^A-Za-z0-9_]/g, "");
   const insta = httpsOnly(CARD.instagram);
   const instaNick = insta ? new URL(insta).pathname.split("/").filter(Boolean)[0] : "";
-
   const text = { ...CARD, telegramAt: tg ? "@" + tg : "", instagramAt: instaNick ? "@" + instaNick : "" };
   $$("[data-cfg]").forEach((n) => { const v = text[n.dataset.cfg]; if (v) n.textContent = v; });
 
@@ -22,22 +25,53 @@
   };
   $$("[data-href]").forEach((a) => { const h = hrefs[a.dataset.href]; if (h) a.href = h; });
 
-  // блоки без данных (нет Telegram, нет клиники, нет отзывов…) не показываем
-  const list = (k) => Array.isArray(CARD[k]) && CARD[k].length > 0;
+  // блоки без данных не показываем
   const has = {
     telegram: !!hrefs.telegram, instagram: !!insta, clinic: !!(CARD.clinic && hrefs.clinic),
-    payment: !!CARD.payment, experience: !!CARD.experience, photo: true,
-    education: list("education"), courses: list("courses"), reviews: list("reviews"),
+    payment: !!CARD.payment, experience: !!CARD.experience, approach: list("approach"),
+    education: list("education"), courses: list("courses"), certificates: list("certificates"),
+    reviews: list("reviews"), cases: list("cases"), methods: list("methods"), path: list("path"),
   };
   $$("[data-need]").forEach((n) => { if (!has[n.dataset.need]) n.remove(); });
 
-  const add = (parent, tag, cls, txt) => { const e = document.createElement(tag); if (cls) e.className = cls; if (txt != null) e.textContent = txt; parent.append(e); return e; };
+  const photo = $("#photo");
+  if (ownFile(CARD.photo, "photos")) photo.src = CARD.photo;
+  photo.addEventListener("error", () => photo.closest(".hero-photo").classList.add("no-photo"));
+
+  /* ---------- о враче ---------- */
+  const focus = $("#focus");
+  (CARD.focus || []).forEach(([title, body]) => { const d = add(focus, "div", "focus-item"); add(d, "h3", null, title); add(d, "p", null, body); });
+  const approach = $("#approach");
+  if (approach) CARD.approach.forEach((p) => add(approach, "p", null, p));
+
+  /* ---------- клинические случаи, методы, путь пациента ---------- */
+  const caseList = $("#case-list");
+  if (caseList) CARD.cases.forEach((c) => {
+    const li = add(caseList, "li", "case");
+    add(li, "h3", null, c.title);
+    const dl = add(li, "dl");
+    [["Проблема", c.problem], ["Что сделано", c.done], ["Срок", c.time]].forEach(([k, v]) => { if (!v) return; const row = add(dl, "div"); add(row, "dt", null, k); add(row, "dd", null, v); });
+  });
+  const methods = $("#methods");
+  if (methods) CARD.methods.forEach(([t, d]) => { const li = add(methods, "li"); add(li, "h3", null, t); add(li, "p", null, d); });
+  const path = $("#path");
+  if (path) CARD.path.forEach(([t, d]) => { const li = add(path, "li"); add(li, "h3", null, t); add(li, "p", null, d); });
+
+  /* ---------- образование ---------- */
   const edu = $("#education");
   if (edu) CARD.education.forEach((t) => add(edu, "li", null, t));
   const courses = $("#courses");
   if (courses) CARD.courses.forEach(([year, title]) => { const li = add(courses, "li"); add(li, "span", "c-year", year); add(li, "span", "c-title", title); });
+  const certs = $("#certs");
+  if (certs) CARD.certificates.forEach(([file, caption]) => {
+    if (!ownFile(file, "certs")) return;
+    const li = add(certs, "li");
+    const a = add(li, "a"); a.href = file; a.target = "_blank"; a.rel = "noopener";
+    const img = add(a, "img"); img.src = file; img.alt = "Сертификат: " + caption; img.loading = "lazy"; img.decoding = "async"; img.width = 754; img.height = 530;
+    add(a, "span", null, caption);
+  });
 
-  // отзывы: длинные свёрнуты до нескольких строк, кнопка разворачивает
+  /* ---------- отзывы: длинные свёрнуты, кнопка разворачивает ---------- */
   const reviews = $("#review-list");
   if (reviews) CARD.reviews.forEach((t, i) => {
     const li = add(reviews, "li", "review");
@@ -53,13 +87,9 @@
       });
     }
   });
-  // если фото не загрузилось — убираем рамку
-  const photo = $("#photo");
-  if (photo) photo.addEventListener("error", () => photo.closest("figure").remove());
 
   /* ---------- до / после: шторка ---------- */
-  const localPath = (p) => /^works\/[\w-]+\.(svg|webp|jpe?g|png)$/.test(p || ""); // только свои файлы
-  const works = (CARD.works || []).filter((w) => localPath(w.before) && localPath(w.after));
+  const works = (CARD.works || []).filter((w) => ownFile(w.before, "works") && ownFile(w.after, "works"));
   const tabs = $("#case-tabs"), frame = $(".ba-frame"), range = $("#ba-range");
   const imgBefore = $("#ba-before"), imgAfter = $("#ba-after");
   const setPos = (v) => frame.style.setProperty("--pos", v + "%");
@@ -73,20 +103,16 @@
     range.value = 50; setPos(50);
   }
   works.forEach((w, i) => {
-    const t = document.createElement("button");
-    t.className = "case-tab"; t.textContent = "Случай " + (i + 1);
+    const t = add(tabs, "button", "case-tab", "Случай " + (i + 1));
     t.type = "button"; t.setAttribute("role", "tab"); t.setAttribute("aria-controls", "ba");
     t.addEventListener("click", () => show(i));
     t.addEventListener("keydown", (e) => {
       const d = { ArrowRight: 1, ArrowLeft: -1 }[e.key]; if (!d) return;
       e.preventDefault(); const n = (i + d + works.length) % works.length; show(n); tabs.children[n].focus();
     });
-    tabs.append(t);
   });
   if (works.length) show(0); else $("#works").remove();
   if (works.length < 2) tabs.remove();
-
-  // подсказка: шторка один раз «покачивается», когда блок впервые появляется на экране
   if (works.length && !matchMedia("(prefers-reduced-motion: reduce)").matches && "IntersectionObserver" in window) {
     const io = new IntersectionObserver(([e]) => {
       if (!e.isIntersecting) return; io.disconnect();
@@ -100,6 +126,14 @@
     io.observe(frame);
   }
 
+  /* ---------- нижняя панель: только когда кнопки первого экрана не видны ---------- */
+  const heroActs = $(".hero-acts");
+  if ("IntersectionObserver" in window && heroActs) {
+    new IntersectionObserver(([e]) => document.body.classList.toggle("bar-on", !e.isIntersecting && e.boundingClientRect.top < 0)).observe(heroActs);
+  } else {
+    document.body.classList.add("bar-on");
+  }
+
   /* ---------- QR на экране ---------- */
   const dlg = $("#qr-dialog");
   $("#qr-open").addEventListener("click", () => (dlg.showModal ? dlg.showModal() : dlg.setAttribute("open", "")));
@@ -111,7 +145,7 @@
   const url = httpsOnly(CARD.cardUrl) || location.href;
   $("#share").addEventListener("click", async () => {
     try {
-      if (navigator.share) { await navigator.share({ title: CARD.brand, text: CARD.role + " " + CARD.name, url }); return; }
+      if (navigator.share) { await navigator.share({ title: CARD.heading || CARD.name, text: CARD.role + " " + CARD.name, url }); return; }
       await navigator.clipboard.writeText(url);
       status.textContent = "Ссылка на визитку скопирована";
     } catch (err) {
