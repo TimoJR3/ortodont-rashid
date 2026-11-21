@@ -62,7 +62,7 @@ a { color: inherit; }
   font: 400 10.5px/1.05 var(--serif); letter-spacing: .08em; text-transform: uppercase; color: var(--enamel);
 }
 
-.name { margin-top: 34px; font-size: clamp(2.4rem, 11vw, 3.1rem); }
+.name { margin-top: 34px; font-size: clamp(2.2rem, 10vw, 2.9rem); text-wrap: balance; }
 .role { margin: 8px 0 0; color: var(--ring); font-size: 15px; }
 
 .hero-acts { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; margin-top: 22px; }
