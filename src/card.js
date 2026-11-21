@@ -22,13 +22,40 @@
   };
   $$("[data-href]").forEach((a) => { const h = hrefs[a.dataset.href]; if (h) a.href = h; });
 
-  // строки без данных (нет Telegram, нет клиники) не показываем
-  const has = { telegram: !!hrefs.telegram, instagram: !!insta, clinic: !!(CARD.clinic && hrefs.clinic) };
+  // блоки без данных (нет Telegram, нет клиники, нет отзывов…) не показываем
+  const list = (k) => Array.isArray(CARD[k]) && CARD[k].length > 0;
+  const has = {
+    telegram: !!hrefs.telegram, instagram: !!insta, clinic: !!(CARD.clinic && hrefs.clinic),
+    payment: !!CARD.payment, experience: !!CARD.experience, photo: true,
+    education: list("education"), courses: list("courses"), reviews: list("reviews"),
+  };
   $$("[data-need]").forEach((n) => { if (!has[n.dataset.need]) n.remove(); });
 
-  const facts = $("#facts");
-  (CARD.facts || []).forEach((f) => { const li = document.createElement("li"); li.textContent = f; facts.append(li); });
-  if (!facts.children.length) facts.closest("section").remove();
+  const add = (parent, tag, cls, txt) => { const e = document.createElement(tag); if (cls) e.className = cls; if (txt != null) e.textContent = txt; parent.append(e); return e; };
+  const edu = $("#education");
+  if (edu) CARD.education.forEach((t) => add(edu, "li", null, t));
+  const courses = $("#courses");
+  if (courses) CARD.courses.forEach(([year, title]) => { const li = add(courses, "li"); add(li, "span", "c-year", year); add(li, "span", "c-title", title); });
+
+  // отзывы: длинные свёрнуты до нескольких строк, кнопка разворачивает
+  const reviews = $("#review-list");
+  if (reviews) CARD.reviews.forEach((t, i) => {
+    const li = add(reviews, "li", "review");
+    add(li, "h3", null, "История пациента");
+    const p = add(li, "p", "review-text", t); p.id = "review-" + i;
+    if (t.length > 320) {
+      li.classList.add("is-long");
+      const b = add(li, "button", "review-more", "Читать полностью");
+      b.type = "button"; b.setAttribute("aria-expanded", "false"); b.setAttribute("aria-controls", p.id);
+      b.addEventListener("click", () => {
+        const open = li.classList.toggle("is-open");
+        b.setAttribute("aria-expanded", String(open)); b.textContent = open ? "Свернуть" : "Читать полностью";
+      });
+    }
+  });
+  // если фото не загрузилось — убираем рамку
+  const photo = $("#photo");
+  if (photo) photo.addEventListener("error", () => photo.closest("figure").remove());
 
   /* ---------- до / после: шторка ---------- */
   const localPath = (p) => /^works\/[\w-]+\.(svg|webp|jpe?g|png)$/.test(p || ""); // только свои файлы

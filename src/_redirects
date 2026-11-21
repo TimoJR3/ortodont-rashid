@@ -1,4 +1,0 @@
-# Старая ссылка и старые QR-коды вели на ortodont-rashid.netlify.app/card/ (визитка клиники).
-# Теперь там визитка Рашида, поэтому /card/ переадресуется на визитку клиники IDEAL.
-/card    https://stomatology-ideal.netlify.app/card/  301!
-/card/*  https://stomatology-ideal.netlify.app/card/:splat  301!

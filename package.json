@@ -6,7 +6,7 @@
   "site": {
     "slug": "ortodont-rashid-card",
     "title": "Ortodont Rashid — визитка",
-    "url": "https://ortodont-rashid.netlify.app"
+    "url": "https://timojr3.github.io/ortodont-rashid"
   },
   "scripts": {
     "start": "node tools/serve.js src",

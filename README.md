@@ -19,8 +19,9 @@ design/                           QR для печати: qr.png (3000 px), qr-l
 | `npm start` | открыть визитку локально: http://127.0.0.1:8731 |
 | `npm run assets` | заново создать контакт .vcf и QR-коды из card-config.js |
 | `npm test` | проверки: файлы, CSP, библиотеки, данные, контакт |
-| `npm run build:zip` | собрать `dist/` и архив для Netlify («Drop new files») |
+| `npm run build` | собрать `dist/` (то же делает публикация) |
 
-Адрес визитки (`cardUrl`) — `https://ortodont-rashid.netlify.app/`. Это имя освободится после
-переименования старого сайта Netlify в `stomatology-ideal`. Если адрес будет другим — поменять `cardUrl`,
-выполнить `npm run assets` и заново сделать `design/qr-logo.png`.
+Публикация — GitHub Pages: после `git push` в `main` визитка сама проверяется и выкладывается
+на `https://timojr3.github.io/ortodont-rashid/` (файл `.github/workflows/pages.yml`).
+Если адрес поменяется (например, свой домен) — поменять `cardUrl`, выполнить `npm run assets`
+и заново сделать `design/qr-logo.png`.

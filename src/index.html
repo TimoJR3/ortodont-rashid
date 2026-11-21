@@ -41,6 +41,7 @@
       <a class="btn btn-main" data-href="tel" href="#">Позвонить</a>
       <a class="btn" data-href="whatsapp" href="#" target="_blank" rel="noopener">WhatsApp</a>
     </div>
+    <p class="payment" data-need="payment" data-cfg="payment">Возможна рассрочка на лечение</p>
   </header>
 
   <!-- контакты списком: значок, что это, и подробность -->
@@ -99,7 +100,19 @@
 
   <section class="about-doc" aria-labelledby="doc-h">
     <h2 id="doc-h">О враче</h2>
-    <ul class="facts" id="facts"></ul>
+    <figure class="portrait" data-need="photo">
+      <img id="photo" src="photos/rashid.jpg" alt="Врач-ортодонт Рашид Гасанов" width="1133" height="1388" loading="lazy" decoding="async">
+    </figure>
+    <p class="experience" data-need="experience" data-cfg="experience">Стаж</p>
+    <h3 class="sub-h" data-need="education">Образование</h3>
+    <ul class="facts" id="education" data-need="education"></ul>
+    <h3 class="sub-h" data-need="courses">Повышение квалификации</h3>
+    <ol class="courses" id="courses" data-need="courses"></ol>
+  </section>
+
+  <section class="reviews" id="reviews" data-need="reviews" aria-labelledby="reviews-h">
+    <h2 id="reviews-h">Истории пациентов</h2>
+    <ul class="review-list" id="review-list"></ul>
   </section>
 
   <a class="clinic" data-need="clinic" data-href="clinic" href="#">

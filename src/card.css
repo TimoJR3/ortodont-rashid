@@ -122,7 +122,32 @@ a { color: inherit; }
 .about-doc { margin-top: 28px; }
 .about-doc h2 { font-size: 1.9rem; }
 .facts { margin: 10px 0 0; padding: 0 0 0 18px; color: var(--mist); }
-.facts li + li { margin-top: 4px; }
+.facts li + li { margin-top: 6px; }
+/* фото врача: арка сверху, как у логотипа; низ мягко уходит в фон */
+.portrait { margin: 14px 0 0; }
+.portrait img {
+  display: block; width: 100%; height: auto; aspect-ratio: 4 / 5; object-fit: cover; object-position: 50% 20%;
+  border-radius: 50% 50% 20px 20px / 32% 32% 20px 20px;
+  border: 1px solid var(--line);
+}
+.experience { margin: 16px 0 0; font: 400 1.5rem/1.2 var(--serif); }
+.sub-h { margin: 20px 0 0; font: 500 15px/1.3 var(--sans); color: var(--ring); }
+.courses { list-style: none; margin: 10px 0 0; padding: 0; display: grid; gap: 10px; }
+.courses li { display: grid; grid-template-columns: 3.4em minmax(0, 1fr); gap: 10px; color: var(--mist); }
+.c-year { color: var(--ring); font-variant-numeric: tabular-nums; }
+
+/* рассрочка под главными кнопками */
+.payment { margin: 14px 0 0; color: var(--mist); font-size: 14px; }
+
+/* ---------- отзывы ---------- */
+.reviews { margin-top: 32px; }
+.reviews h2 { font-size: 1.9rem; }
+.review-list { list-style: none; margin: 14px 0 0; padding: 0; display: grid; gap: 12px; }
+.review { padding: 16px 18px; border-radius: 20px; border: 1px solid var(--line); background: var(--bg-2); }
+.review h3 { margin: 0 0 8px; font: 500 15px/1.3 var(--sans); color: var(--ring); }
+.review-text { margin: 0; color: var(--mist); }
+.review.is-long:not(.is-open) .review-text { display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 6; line-clamp: 6; overflow: hidden; }
+.review-more { margin-top: 8px; padding: 6px 0; border: 0; background: none; color: var(--enamel); font: 500 14px/1.2 var(--sans); text-decoration: underline; text-underline-offset: 3px; cursor: pointer; }
 
 /* ---------- клиника ---------- */
 .clinic {
