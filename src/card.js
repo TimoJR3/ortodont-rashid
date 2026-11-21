@@ -30,7 +30,7 @@
     telegram: !!hrefs.telegram, instagram: !!insta, clinic: !!(CARD.clinic && hrefs.clinic),
     payment: !!CARD.payment, experience: !!CARD.experience, approach: list("approach"),
     education: list("education"), courses: list("courses"), certificates: list("certificates"),
-    reviews: list("reviews"), cases: list("cases"), methods: list("methods"), path: list("path"),
+    reviews: list("reviews"), methods: list("methods"), path: list("path"),
   };
   $$("[data-need]").forEach((n) => { if (!has[n.dataset.need]) n.remove(); });
 
@@ -44,14 +44,7 @@
   const approach = $("#approach");
   if (approach) CARD.approach.forEach((p) => add(approach, "p", null, p));
 
-  /* ---------- клинические случаи, методы, путь пациента ---------- */
-  const caseList = $("#case-list");
-  if (caseList) CARD.cases.forEach((c) => {
-    const li = add(caseList, "li", "case");
-    add(li, "h3", null, c.title);
-    const dl = add(li, "dl");
-    [["Проблема", c.problem], ["Что сделано", c.done], ["Срок", c.time]].forEach(([k, v]) => { if (!v) return; const row = add(dl, "div"); add(row, "dt", null, k); add(row, "dd", null, v); });
-  });
+  /* ---------- методы и путь пациента ---------- */
   const methods = $("#methods");
   if (methods) CARD.methods.forEach(([t, d]) => { const li = add(methods, "li"); add(li, "h3", null, t); add(li, "p", null, d); });
   const path = $("#path");

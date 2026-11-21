@@ -22,7 +22,6 @@
 <canvas id="tooth-canvas" aria-hidden="true"></canvas>
 
 <main class="card">
-  <p class="demo-note">Демо-визитка. Данные в квадратных скобках будут заменены реальными.</p>
 
   <!-- 1. Знакомство: фамилия и имя, должность, фото, главные действия -->
   <header class="hero">
@@ -69,12 +68,12 @@
   <!-- 3. Работы до и после -->
   <section class="sec works" id="works" aria-labelledby="works-h">
     <h2 id="works-h">Работы: до и после</h2>
-    <p class="note">Потяните шторку, чтобы сравнить. Сейчас здесь рисунки-примеры: их заменят фото пациентов, давших согласие.</p>
+    <p class="note">Потяните шторку, чтобы сравнить.</p>
     <div class="cases-tabs" role="tablist" aria-label="Случаи" id="case-tabs"></div>
     <figure class="ba" id="ba">
       <div class="ba-frame">
-        <img class="ba-img" id="ba-after" src="works/example-1-after.svg" alt="После лечения" width="640" height="420">
-        <img class="ba-img ba-before" id="ba-before" src="works/example-1-before.svg" alt="До лечения" width="640" height="420">
+        <img class="ba-img" id="ba-after" src="works/case-1-after.webp" alt="После лечения" width="1200" height="800">
+        <img class="ba-img ba-before" id="ba-before" src="works/case-1-before.webp" alt="До лечения" width="1200" height="800">
         <span class="ba-tag ba-tag-before" aria-hidden="true">До</span>
         <span class="ba-tag ba-tag-after" aria-hidden="true">После</span>
         <span class="ba-line" aria-hidden="true"></span>
@@ -84,25 +83,19 @@
     </figure>
   </section>
 
-  <!-- 4. Клинические случаи -->
-  <section class="sec" data-need="cases" aria-labelledby="cases-h">
-    <h2 id="cases-h">Клинические случаи</h2>
-    <ul class="case-list" id="case-list"></ul>
-  </section>
-
-  <!-- 5. Основные методы лечения -->
+  <!-- 4. Основные методы лечения -->
   <section class="sec" data-need="methods" aria-labelledby="methods-h">
     <h2 id="methods-h">Методы лечения</h2>
     <ul class="methods" id="methods"></ul>
   </section>
 
-  <!-- 6. Путь пациента — по шагам -->
+  <!-- 5. Путь пациента — по шагам -->
   <section class="sec" data-need="path" aria-labelledby="path-h">
     <h2 id="path-h">Лечение по понятному плану</h2>
     <ol class="path" id="path"></ol>
   </section>
 
-  <!-- 7. Образование и профессиональное развитие -->
+  <!-- 6. Образование и профессиональное развитие -->
   <section class="sec" id="education-sec" aria-labelledby="edu-h">
     <h2 id="edu-h">Образование и развитие</h2>
     <p class="experience" data-need="experience" data-cfg="experience">Стаж</p>
@@ -114,7 +107,7 @@
     <ul class="certs" id="certs" data-need="certificates"></ul>
   </section>
 
-  <!-- 8. Адрес клиники и контакты -->
+  <!-- 7. Адрес клиники и контакты -->
   <section class="sec" id="contacts" aria-labelledby="contacts-h">
     <h2 id="contacts-h">Адрес и запись</h2>
     <ul class="links">
@@ -158,7 +151,7 @@
     </a>
   </section>
 
-  <!-- 9. Отзывы -->
+  <!-- 8. Отзывы -->
   <section class="sec" id="reviews" data-need="reviews" aria-labelledby="reviews-h">
     <h2 id="reviews-h">Истории пациентов</h2>
     <ul class="review-list" id="review-list"></ul>

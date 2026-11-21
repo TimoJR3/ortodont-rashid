@@ -36,7 +36,7 @@ a { color: inherit; }
 .no-3d #tooth-canvas { display: none; }
 
 .card { position: relative; z-index: 1; max-width: 480px; margin: 0 auto; padding: 0 16px calc(96px + env(safe-area-inset-bottom)); }
-.demo-note { margin: 0 -16px 20px; padding: 9px 16px; background: rgba(31, 58, 107, 0.45); color: var(--mist); font-size: 13px; text-align: center; }
+
 
 /* ---------- 1. знакомство ---------- */
 .hero { text-align: center; }
@@ -129,14 +129,6 @@ a { color: inherit; }
 .ba-cap strong { font-weight: 500; }
 .ba-cap span { color: var(--ring); font-size: 15px; }
 
-/* клинические случаи */
-.case-list { list-style: none; margin: 16px 0 0; padding: 0; display: grid; gap: 12px; }
-.case { padding: 16px 18px; border-radius: 20px; border: 1px solid var(--line); background: var(--bg-2); }
-.case h3 { font: 400 1.3rem/1.15 var(--serif); }
-.case dl { margin: 10px 0 0; display: grid; gap: 6px; }
-.case dl div { display: grid; grid-template-columns: 7.2em minmax(0, 1fr); gap: 10px; }
-.case dt { color: var(--ring); font-size: 14px; }
-.case dd { margin: 0; color: var(--mist); font-size: 15px; }
 
 /* методы лечения: строки с тонкими разделителями */
 .methods { list-style: none; margin: 14px 0 0; padding: 0; border-top: 1px solid var(--line); }
