@@ -103,6 +103,7 @@ const CARD = {
   works: [
     { title: "Скученность зубов", method: "Брекет-система", before: "works/case-1-before.webp", after: "works/case-1-after.webp" },
     { title: "Скученность зубов, вид сбоку", method: "Брекет-система: слева — начало лечения, справа — результат", before: "works/case-2-before.webp", after: "works/case-2-after.webp" },
+    { title: "Исправление прикуса, вид сбоку", method: "Ровный зубной ряд и правильное смыкание зубов", before: "works/case-3-before.webp", after: "works/case-3-after.webp" },
   ],
 
   clinic: "Стоматология IDEAL",             // где принимает (пусто — строки нет)
