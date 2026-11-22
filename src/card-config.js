@@ -66,8 +66,8 @@ const CARD = {
   telegram: "",                             // ник без @ (пусто — строки нет)
   instagram: "https://www.instagram.com/ortodont.rashid/",
 
-  address: "Республика Дагестан, г. Дербент, пер. Карла Маркса, 12",
-  mapUrl: "https://yandex.ru/maps/-/CXWwyEJ9",
+  address: "Республика Дагестан, г. Дербент, ул. Буйнакского, 49А",
+  mapUrl: "https://yandex.ru/maps/?text=%D0%94%D0%B5%D1%80%D0%B1%D0%B5%D0%BD%D1%82%2C%20%D1%83%D0%BB%D0%B8%D1%86%D0%B0%20%D0%91%D1%83%D0%B9%D0%BD%D0%B0%D0%BA%D1%81%D0%BA%D0%BE%D0%B3%D0%BE%2C%2049%D0%90",
 
   experience: "Стаж 7 лет",
   education: [
