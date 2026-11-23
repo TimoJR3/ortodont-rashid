@@ -58,7 +58,7 @@ const CARD = {
     ["certs/cert-2020-residency.webp", "Ортодонтическая резидентура, 2020"],
     ["certs/cert-2020-kerr.webp", "Kerr. Снятие брекетов. Установка ретейнеров, 2020"],
   ],
-  cardUrl: "https://timojr3.github.io/ortodont-rashid/", // адрес визитки: зашит в QR и в контакт
+  cardUrl: "https://ortodont-rashid.ru/", // адрес визитки: зашит в QR и в контакт
 
   phoneDisplay: "+7 (960) 347-65-47",
   phoneTel: "+79603476547",
@@ -107,5 +107,5 @@ const CARD = {
   ],
 
   clinic: "Стоматология IDEAL",             // где принимает (пусто — строки нет)
-  clinicUrl: "https://timojr3.github.io/stomatology-ideal/card/",
+  clinicUrl: "https://stomatology-ideal.ru/",
 };
